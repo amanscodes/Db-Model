@@ -1,0 +1,77 @@
+Db Model For Zen Class
+
+The different entities which can be used in the database are: 
+1. Instructors:
+InstructorID (Primary Key): A unique identifier for each instructor.
+First Name: The first name of the instructor.
+Last Name: The last name of the instructor.
+Email: The instructor's email address for communication.
+Phone Number: The instructor's contact phone number.
+
+2.Students:
+StudentID (Primary Key): A unique identifier for each student.
+First Name: The first name of the student.
+Last Name: The last name of the student.
+Email: The student's email address for communication.
+Date of Birth: The student's date of birth.
+Phone Number: The student's contact phone number.
+Address: The student's address for contact and location information.
+
+3. Courses:
+CourseID (Primary Key): A unique identifier for each course.
+Course Name: The name of the course.
+Description: A brief description of the course content and objectives.
+InstructorID (Foreign Key): A reference to the instructor who is teaching the course.
+Start Date: The start date of the course.
+End Date: The end date of the course.
+
+4. Enrollments:
+EnrollmentID (Primary Key): A unique identifier for each enrollment record.
+StudentID (Foreign Key): A reference to the student who is enrolled in a course.
+CourseID (Foreign Key): A reference to the course in which the student is enrolled.
+Enrollment Date: The date when the student enrolled in the course.
+
+5. Queries:
+QueryID (Primary Key): A unique identifier for each query.
+StudentID (Foreign Key): A reference to the student who raised the query.
+CourseID (Foreign Key): A reference to the course related to the query.
+Query Text: The text of the query raised by the student.
+Query Date: The date when the query was raised.
+Response Text: The response provided by the instructor to address the query.
+Status : The status of the query should be updated whether it is open or closed.
+
+6. Tasks:
+TaskID (Primary Key): A unique identifier for each task.
+CourseID (Foreign Key): A reference to the course to which the task belongs.
+StudentID (Foreign Key): A reference to the student who is assigned the task.
+Task Description: Details about the task or assignment.
+Submission Date: The date when the student is required to submit the task.
+Evaluation: A numeric score or evaluation given by the instructor.
+Comments: Feedback or comments provided by the instructor regarding the task.
+These entities and their attributes help organize information related to students, instructors, courses, enrollments, queries, and tasks. They enable the system to manage student interactions, course enrollments, and the evaluation of tasks and queries in an organized manner.
+The common relationships between these entities in the database model are essential for maintaining the integrity of the data and ensuring that all the components work together. 
+
+
+
+
+KEY RELATIONSHIPS BETWEEN THESE ENTITIES
+1. Enrollments:
+This is a link between Students and Courses.
+It establishes a many-to-many relationship, as each student can be enrolled in multiple courses, and each course can have multiple students.
+The EnrollmentID in the Enrollments table is a foreign key that references StudentID and CourseID.
+
+2. Courses - Instructors:
+This is a one-to-many relationship, as each course has one instructor, but each instructor can teach multiple courses.
+The InstructorID in the Courses table is a foreign key that references the unique InstructorID in the Instructors table.
+
+3. Queries:
+This entity links Students, Courses, and Instructors.
+Each query is associated with a specific student and the course to which it pertains.
+The StudentID and CourseID in the Queries table are foreign keys that reference the Students and Courses tables.
+
+4. Tasks:
+Tasks connect Students, Courses, and Instructors.
+Each task is linked to a particular student, the course for which it is assigned, and the instructor responsible for evaluation.
+The StudentID and CourseID in the Tasks table are foreign keys that reference the Students and Courses tables.
+
+These relationships enable you to track which students are enrolled in which courses, who the instructors are for each course, and how queries and tasks are associated with students and their respective courses. These connections help maintain data integrity and provide the necessary context for managing interactions and educational activities within the system.
